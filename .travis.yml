@@ -13,4 +13,6 @@ before_install:
 script:
 # normaly when we execute this command like [docker run image-id npm run test] this will end automaticlly we nned to press q
 # instead of -e CI=true we can also write at end -- --coverage
+  #- docker run -e CI=true abdullah/docker-centeral npm run test
+script:
   - docker run -e CI=true abdullah/docker-centeral npm run test
