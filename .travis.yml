@@ -16,4 +16,17 @@ script:
   #- docker run -e CI=true abdullah/docker-centeral npm run test
 script:
   - docker run --env CI=true abdullah/docker-centeral npm run test -- --coverage
+# in deploy section we define some configuration to tell travis to take our application and deploy it to AWS
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "frontend"
+  env: "Frontend-env"
+  bucket_name: "elasticbeanstalk-us-east-1-471112545665"
+  bucket_path: "frontend"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: "$AWS_SECRET_KEY"
 
+http://frontend-env.eba-iddpyadw.us-east-1.elasticbeanstalk.com/
