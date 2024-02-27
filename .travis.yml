@@ -1,0 +1,16 @@
+sudo: required
+services:
+  # now mention docker it means we need a copy of docker and also mention above sudo beacause for docker we need super user level permission
+  - docker
+
+before_install:
+# this section conatain series of command that can run before execution of test. after exevuting below command it give image id so we can give him a name.
+
+#  - docker build -f Dockerfile.dev .
+  - docker build -t abdullah/docker-centeral -f Dockerfile.dev .
+  # now we need to tell travis how to run test suite.
+
+script:
+# normaly when we execute this command like [docker run image-id npm run test] this will end automaticlly we nned to press q
+# instead of -e CI=true we can also write at end -- --coverage
+ - docker run abdullah/docker-centeral npm run test -- --covergae
